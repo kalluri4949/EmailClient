@@ -1,1 +1,27 @@
-<p>sign-up works!</p>
+<h1>Create an Account</h1>
+<form class="ui form" [formGroup]="authForm">
+  <app-input inputType="text" label="UserName" [control]="authForm.controls.username"></app-input>
+
+  <!-- {{authForm.controls.username.errors| json}} -->
+  <app-input inputType="password" label="Password" [control]="authForm.controls.password"></app-input>
+
+  <app-input inputType="password" label="Password Confirmation" [control]="authForm.controls.passwordConfirmation">
+  </app-input>
+
+  <div *ngIf="
+  authForm.controls.password.touched &&
+  authForm.controls.passwordConfirmation.touched &&
+  authForm.errors" class="ui red basic label">
+    <p *ngIf="authForm.errors.passwordNotMatch">
+      Password and passwordConfirmation must match
+    </p>
+  </div>
+  <div>
+    <button class="ui submit button primary">Submit</button>
+  </div>
+
+</form>
+
+<!-- <div>Form is Valid: {{authForm.valid}}</div>
+<div>Form Values: {{authForm.value | json}}</div>
+ <div>Form Errors: {{authForm.errors| json}}</div>  -->
